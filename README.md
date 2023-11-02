@@ -12,6 +12,16 @@ python3.8
 
 使用方式
 
+```sh
+git clone https://github.com/lyangdn/aizhan_weight_query.git
+```
+
+```shell
+pip3 install -r requirements.txt
+```
+
+
+
 Linux用户：
 
 ```sh
