@@ -10,8 +10,32 @@ Ubuntu22.04
 
 python3.8
 
-使用方式
+使用方式（单文件使用方式）
 
+```sh
+git clone https://github.com/lyangdn/aizhan_weight_query.git
+```
+
+```shell
+pip3 install -r requirements.txt
+```
+
+
+aizhan_weight_query.py使用方式：
+```python
+单个 python3 aizhan_weight_query.py -u url
+批量 python3 aizhan_weight_query.py -f filename
+导出指定文件 python3 aizhan_weight_query.py -o outfilename
+```
+top_www_domain.py使用方式：
+```python
+批量 python3 top_www_domain.py -i filename
+导出指定文件 python3 top_www_domain.py -o outfilename
+```
+
+使用方式（双py文件批量使用）
+
+查询主站权限
 ```sh
 git clone https://github.com/lyangdn/aizhan_weight_query.git
 ```

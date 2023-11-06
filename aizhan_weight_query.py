@@ -1,11 +1,12 @@
 '''
 Author: Lyangdn
 Date: 2023-11-02 17:30:52
-LastEditTime: 2023-11-02 23:13:27
+LastEditTime: 2023-11-03 12:17:42
 Description: 
 Software: Visual Studio Code
 Copyright (c) 2023 by Lyangdn, All Rights Reserved. 
 '''
+import grequests
 import requests
 import urllib3
 import argparse
@@ -44,7 +45,8 @@ def query(url,outfile):
         'sec-ch-ua-platform': 'linux',
     }
 
-    response = requests.get(url=url, headers=headers,timeout=5)
+    response = grequests.get(url=url, headers=headers,timeout=5)
+    response=grequests.map([response])[0]
     lxml_tree = etree.HTML(response.text)
     href_name = lxml_tree.xpath(
         '//div[@id="webpage_title"]//text()')
@@ -69,16 +71,8 @@ def query(url,outfile):
         '//ul[@id="icp"]//text()')
     print("[+] 备案信息: \n", repr(" ".join(icp)).replace(
         "\\n", "").replace("\\t", "").replace("'", ""))
-    # with open(f"{outfile}", "a") as f:
-    #     f.write("\n\n-> Title信息: {0}\n".format("".join(href_name)))
-    #     f.write(f"查询域名为：{domain}\n")
-    #     f.write(f"查询url为：{url}\n")
-    #     f.write("[+] 综合权重: 百度权重: {0}\t移动权重:{1}\t360权重:{2}\t神马权重:{3}\t搜狗权重:{4}\t谷歌PR:{5}".format("".join(
-    #     br), "".join(mbr), "".join(pr), "".join(sm_pr), "".join(sogou_pr), "".join(google_pr)))
-    #     f.write("[+] 备案信息: \n", repr(" ".join(icp)).replace( "\\n", "").replace("\\t", "").replace("'", ""))
     with open(f"{outfile}","a") as csvfile:
         w=csv.writer(csvfile)
-        # w.writerow(["查询域名","查询url","Title信息","百度权重","移动权重","360权重","神马权重","搜狗权重","谷歌权重","icp备案信息"]) 
         w.writerow([domain,url,"".join(href_name),"".join(br),"".join(mbr),"".join(pr),"".join(sm_pr),"".join(sogou_pr),"".join(google_pr),repr(" ".join(icp)).replace( "\\n", "").replace("\\t", "").replace("'", "")])
 def Copyright(outfile):
     global BULE_BOLD
@@ -120,7 +114,8 @@ try:
             url = urlparse(url).netloc
             query(url=url, outfile=outfile)
         else:
-            url = url
+            url = "http://" + url
+            url = urlparse(url).netloc
             query(url=url,outfile=outfile)
     else:
         count = 0
@@ -133,7 +128,8 @@ try:
                                     if "http://" in url or "https://" in url:
                                         url = urlparse(url).netloc
                                     else:
-                                        url = url
+                                        url= "http://"+url
+                                        url = urlparse(url).netloc
                                 threadPool.submit(query, url.replace("\n", ""),outfile)
                                 count += 1
                             except Exception as e:
