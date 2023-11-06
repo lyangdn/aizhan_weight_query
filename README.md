@@ -2,7 +2,8 @@
 
 查询结果图
 
-![img](https://github.com/lyangdn/aizhan_weight_query/assets/95094405/0ebdc95a-ca55-4a2f-9647-053d96e405fa)
+![img](https://github.com/lyangdn/aizhan_weight_query/assets/95094405/a0e452cf-9487-499b-b779-e702fbf9e6ce)
+
 
 
 
