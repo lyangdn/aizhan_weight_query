@@ -2,7 +2,8 @@
 
 查询结果图
 
-![Uploading img.png…]()
+![img](https://github.com/lyangdn/aizhan_weight_query/assets/95094405/0ebdc95a-ca55-4a2f-9647-053d96e405fa)
+
 
 
 爱站一键化权重查询工具，并且对www域名和主域名进行查询，更加方便提交漏洞与查询归属
